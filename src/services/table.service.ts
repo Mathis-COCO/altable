@@ -9,22 +9,14 @@ import { Table } from '../entities/table.entity';
 export class TableService {
   constructor(@InjectRepository(Table) private tableRepository: Repository<Table>) { }
 
-  // Création d'une table
   async create(createTableDto: CreateTableDto): Promise<Table> {
-    const newTable = ({
-      id: createTableDto.id,
-      maxSeats: createTableDto.maxSeats,
-      isAvailable: createTableDto.isAvailable,
-    });
-    return this.tableRepository.save(newTable);
+    return this.tableRepository.save(createTableDto);
   }
 
-  // Récupération de toutes les tables
   async findAll(): Promise<Table[]> {
     return this.tableRepository.find();
   }
 
-  // Suppresion de toutes les tables
   async removeAll(): Promise<void> {
     await this.tableRepository.clear();
   }
