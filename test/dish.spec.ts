@@ -66,6 +66,7 @@ describe('DishController (e2e)', () => {
             save: jest.fn().mockResolvedValue(createDish),
             find: jest.fn().mockResolvedValue(createDishes),
             delete: jest.fn().mockResolvedValue({ affected: 1 }),
+            clear: jest.fn().mockResolvedValue(undefined),
           },
         },
       ],
@@ -170,7 +171,7 @@ describe('DishController (e2e)', () => {
       .get('/dishes/menu')
       .expect(200)
       .expect(({ body }) => {
-        expect(body).toEqual([createDish]);
+        expect(body).toEqual(createDish);
       });
   });
 });
