@@ -32,7 +32,10 @@ export class DishController {
   async findAll(): Promise<Dish[]> {
     return this.dishService.findAll();
   }
-
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Dish> {
+    return this.dishService.findOne(id);
+  }
   @Delete()
   async removeAll(): Promise<void> {
     return this.dishService.removeAll();

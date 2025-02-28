@@ -32,4 +32,12 @@ export class DishService {
   async removeAll(): Promise<void> {
     await this.dishRepository.clear();
   }
+
+  async findOne(id: string): Promise<Dish> {
+    const dish = await this.dishRepository.findOne({ where: { id } });
+    if (!dish) {
+      throw new NotFoundException(`Plat avec l'ID ${id} non trouvé.`);
+    }
+    return dish;
+  }
 }
