@@ -18,4 +18,7 @@ export class Table {
 
   @ManyToOne(() => TablePlan, (tablePlan) => tablePlan.tables)
   tablePlan?: TablePlan;
+
+  @Column()
+  occupiedSeats?: number = 0;
 }

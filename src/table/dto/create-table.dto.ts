@@ -11,5 +11,5 @@ export class CreateTableDto {
   isAvailable: boolean;
 
   @IsNumber()
-  nbPeopleInstalled?: number = 0;
+  occupiedSeats?: number = 0;
 }

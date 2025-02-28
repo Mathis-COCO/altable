@@ -19,12 +19,19 @@ export class TableController {
     return this.tableService.findAll();
   }
   
-  @Put(':id')
+  @Put('update/:id')
   async update(
     @Param('id') id: string,
     @Body() updateDishDto: UpdateTableDto,
   ): Promise<Table> {
     return this.tableService.update(id, updateDishDto);
+  }
+  
+  @Put('close/:id')
+  async close(
+    @Param('id') id: string,
+  ): Promise<Table> {
+    return this.tableService.close(id);
   }
   
   @Delete()

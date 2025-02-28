@@ -28,14 +28,29 @@ export class TableService {
     if (!table) {
       throw new NotFoundException(`Table avec l'ID ${id} non trouvée.`);
     }
-    if (table.maxSeats < updateTableDto.nbPeopleInstalled) {
+    if (table.maxSeats < updateTableDto.occupiedSeats) {
       throw new BadRequestException(
         `Le nombre de places installées ne peut pas être supérieur au nombre de places maximum. Nombre de places maximum: ${table.maxSeats}`,
       );
+    } else if (updateTableDto.occupiedSeats === 0) {
+      table.isAvailable = true;
     } else {
       table.isAvailable = false;
     }
     Object.assign(table, updateTableDto);
+    return this.tableRepository.save(table);
+  }
+
+  async close(id: string) {
+    const table = await this.tableRepository.findOne({ where: { id } });
+    if (!table) {
+      throw new NotFoundException(`Table avec l'ID ${id} non trouvée.`);
+    }
+    if (table.isAvailable) {
+      throw new BadRequestException(`La table est déjà disponible.`);
+    }
+    table.isAvailable = true;
+    table.occupiedSeats = 0;
     return this.tableRepository.save(table);
   }
 
