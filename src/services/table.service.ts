@@ -21,4 +21,7 @@ export class TableService {
     await this.tableRepository.clear();
   }
 
+  async removeById(id: string): Promise<void> {
+    await this.tableRepository.delete(id);
+  }
 }

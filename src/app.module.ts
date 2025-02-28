@@ -9,6 +9,8 @@ import { TablePlanController } from './controllers/tablePlan.controller';
 import { TableService } from './services/table.service';
 import { TablePlanService } from './services/tablePlan.service';
 import 'dotenv/config';
+import { Table } from './entities/table.entity';
+import { TablePlan } from './entities/tablePlan.entity';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import 'dotenv/config';
       },
     }),
     TypeOrmModule.forFeature([Dish]),
+    TypeOrmModule.forFeature([Table]),
+    TypeOrmModule.forFeature([TablePlan]),
   ],
   controllers: [DishController, TableController, TablePlanController],
   providers: [DishService, TableService, TablePlanService],

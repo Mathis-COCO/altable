@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post, Get, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Delete, Param } from '@nestjs/common';
 import { TableService } from '../services/table.service';
 import { CreateTableDto } from '../dto/create-table.dto';
 import { Table } from '../entities/table.entity';
@@ -21,5 +21,10 @@ export class TableController {
   @Delete()
   async removeAll(): Promise<void> {
     return this.tableService.removeAll();
+  }
+
+  @Delete(':id')
+  async removeById(@Param('id') id: string): Promise<void> {
+    return this.tableService.removeById(id);
   }
 }
