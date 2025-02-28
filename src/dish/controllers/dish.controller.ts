@@ -6,6 +6,7 @@ import {
   Delete,
   Put,
   Param,
+  NotFoundException,
 } from '@nestjs/common';
 import { DishService } from '../services/dish.service';
 import { Dish } from '../entities/dish.entity';
@@ -28,9 +29,29 @@ export class DishController {
   ): Promise<Dish> {
     return this.dishService.update(id, updateDishDto);
   }
+
   @Get()
   async findAll(): Promise<Dish[]> {
     return this.dishService.findAll();
+  }
+
+  @Get('availableDishes')
+  async findAvailableDishes(): Promise<Dish[]> {
+    return this.dishService.findAvailableDishes();
+  }
+
+  @Get(':id')
+  async getById(@Param('id') id: string): Promise<Dish> {
+    const dish = await this.dishService.getById(id);
+    if (!dish) {
+      throw new NotFoundException(`Plat avec l'ID ${id} non trouvé.`);
+    }
+    return dish;
+  }
+
+  @Delete(':id')
+  async deleteById(@Param('id') id: string): Promise<void> {
+    await this.dishService.deleteById(id);
   }
 
   @Delete()
