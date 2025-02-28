@@ -23,7 +23,7 @@ export class DishController {
 
   @Put(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateDishDto: UpdateDishDto,
   ): Promise<Dish> {
     return this.dishService.update(id, updateDishDto);

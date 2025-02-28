@@ -1,16 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { DishController } from './controllers/dish.controller';
-import { DishService } from './services/dish.service';
-import { Dish } from './entities/dish.entity';
-import { TableController } from './controllers/table.controller';
-import { TablePlanController } from './controllers/tablePlan.controller';
-import { TableService } from './services/table.service';
-import { TablePlanService } from './services/tablePlan.service';
 import 'dotenv/config';
-import { Table } from './entities/table.entity';
-import { TablePlan } from './entities/tablePlan.entity';
+import { DishModule } from './dish/dish.module';
+import { TableModule } from './table/table.module';
 
 @Module({
   imports: [
@@ -29,11 +22,8 @@ import { TablePlan } from './entities/tablePlan.entity';
         },
       },
     }),
-    TypeOrmModule.forFeature([Dish]),
-    TypeOrmModule.forFeature([Table]),
-    TypeOrmModule.forFeature([TablePlan]),
+    DishModule,
+    TableModule,
   ],
-  controllers: [DishController, TableController, TablePlanController],
-  providers: [DishService, TableService, TablePlanService],
 })
 export class AppModule {}

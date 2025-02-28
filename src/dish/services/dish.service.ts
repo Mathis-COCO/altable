@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Dish } from '../entities/dish.entity';
-import { CreateDishDto } from 'src/dto/create-dish.dto';
-import { UpdateDishDto } from 'src/dto/update-dish.dto';
+import { CreateDishDto } from '../dto/create-dish.dto';
+import { UpdateDishDto } from '../dto/update-dish.dto';
 
 @Injectable()
 export class DishService {
@@ -16,7 +16,7 @@ export class DishService {
     return this.dishRepository.save(createDishDto);
   }
 
-  async update(id: number, updateDishDto: UpdateDishDto): Promise<Dish> {
+  async update(id: string, updateDishDto: UpdateDishDto): Promise<Dish> {
     const dish = await this.dishRepository.findOne({ where: { id } });
     if (!dish) {
       throw new NotFoundException(`Plat avec l'ID ${id} non trouvé.`);
