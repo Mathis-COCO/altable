@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import 'dotenv/config';
 import { DishModule } from './dish/dish.module';
 import { TableModule } from './table/table.module';
+import { ServiceModule } from './service/service.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { TableModule } from './table/table.module';
     }),
     DishModule,
     TableModule,
+    ServiceModule,
   ],
 })
 export class AppModule {}
