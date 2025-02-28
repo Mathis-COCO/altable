@@ -32,6 +32,8 @@ export class TableService {
       throw new BadRequestException(
         `Le nombre de places installées ne peut pas être supérieur au nombre de places maximum. Nombre de places maximum: ${table.maxSeats}`,
       );
+    } else {
+      table.isAvailable = false;
     }
     Object.assign(table, updateTableDto);
     return this.tableRepository.save(table);
