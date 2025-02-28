@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post, Get, Delete, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Delete, Param, Put } from '@nestjs/common';
 import { TableService } from '../services/table.service';
 import { CreateTableDto } from '../dto/create-table.dto';
 import { Table } from '../entities/table.entity';
+import { UpdateTableDto } from '../dto/update-table.dto';
 
 @Controller('table')
 export class TableController {
@@ -16,6 +17,14 @@ export class TableController {
   @Get()
   async findAll(): Promise<Table[]> {
     return this.tableService.findAll();
+  }
+  
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateDishDto: UpdateTableDto,
+  ): Promise<Table> {
+    return this.tableService.update(id, updateDishDto);
   }
   
   @Delete()
