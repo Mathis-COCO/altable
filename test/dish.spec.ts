@@ -9,7 +9,7 @@ import { DishType } from './../src/enums/DishType.enum';
 
 // 1. Créer un plat
 const createDish: Dish = {
-  id: 1,
+  id: '550e8400-e29b-41d4-a716-446655440000',
   name: 'Pizza',
   description: 'Pizza 4 fromages',
   type: DishType.PLAT_PRINCIPAL,

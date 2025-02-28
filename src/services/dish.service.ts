@@ -16,7 +16,7 @@ export class DishService {
     return this.dishRepository.save(createDishDto);
   }
 
-  async update(id: number, updateDishDto: UpdateDishDto): Promise<Dish> {
+  async update(id: string, updateDishDto: UpdateDishDto): Promise<Dish> {
     const dish = await this.dishRepository.findOne({ where: { id } });
     if (!dish) {
       throw new NotFoundException(`Plat avec l'ID ${id} non trouvé.`);

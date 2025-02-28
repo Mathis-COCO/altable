@@ -5,7 +5,7 @@ import { IsInt, Min } from 'class-validator';
 @Entity()
 export class Dish {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ unique: true })
   name: string;
