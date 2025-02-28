@@ -5,5 +5,5 @@ export class UpdateTableDto {
     {},
     { message: 'Le nombre de personnes à installer doit être un nombre.' },
   )
-  nbPeopleInstalled: number;
+  occupiedSeats: number;
 }

@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { IsInt, IsNotEmpty, Min } from 'class-validator';
 import { TablePlan } from './tablePlan.entity';
+import { OrderDish } from './orderDish.entity';
 
 @Entity()
 export class Table {
@@ -18,4 +25,10 @@ export class Table {
 
   @ManyToOne(() => TablePlan, (tablePlan) => tablePlan.tables)
   tablePlan?: TablePlan;
+
+  @Column()
+  occupiedSeats?: number = 0;
+
+  @OneToMany(() => OrderDish, (orderDish) => orderDish.table)
+  orderDishes?: OrderDish[];
 }
