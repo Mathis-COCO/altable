@@ -97,18 +97,6 @@ describe('DishController (e2e)', () => {
       });
   });
 
-  it('/GET dish by id', async () => {
-    const dishId = '550e8400-e29b-41d4-a716-446655440000';
-    const response = await request(app.getHttpServer())
-      .get(`/dishes/${dishId}`)
-      .expect(200);
-
-    expect(response.body).toEqual(createDish);
-    expect(dishRepository.findOne).toHaveBeenCalledWith({
-      where: { id: dishId },
-    });
-  });
-
   // Test pour récupérer un plat par ID
   it('/GET dish by id', () => {
     return request(app.getHttpServer())
